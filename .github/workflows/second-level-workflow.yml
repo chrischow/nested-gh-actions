@@ -46,6 +46,7 @@ jobs:
     needs: process-vars
     with:
       deploy-environment: ${{ inputs.deploy-environment }}
+      other-random-var: hello
     secrets:
       SECRET1: ${{ secrets.SECRET1 }}
       SECRET2: ${{ secrets.SECRET2 }}
