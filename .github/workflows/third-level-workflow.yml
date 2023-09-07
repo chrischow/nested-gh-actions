@@ -5,6 +5,13 @@ on:
       deploy-environment:
         required: true
         type: string
+    secrets:
+      SECRET1:
+        required: true
+      SECRET2:
+        required: true
+      SECRET3:
+        required: true
 jobs:
   show-env:
     name: Show Environment

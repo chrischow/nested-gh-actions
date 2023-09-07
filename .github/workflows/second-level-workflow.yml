@@ -12,8 +12,7 @@ jobs:
     environment:
       name: ${{ inputs.deploy-environment }}
     steps:
-      - name: Print secrets
-        run: |
+      - run: |
           echo "SECRET1=${{ secrets.SECRET1 }}"
           echo "SECRET2=${{ secrets.SECRET2 }}"
           echo "SECRET3=${{ secrets.SECRET3 }}"
@@ -28,3 +27,7 @@ jobs:
     uses: ./.github/workflows/third-level-workflow.yml
     with:
       deploy-environment: ${{ inputs.deploy-environment }}
+    secrets:
+      SECRET1: ${{ secrets.SECRET1 }}
+      SECRET2: ${{ secrets.SECRET2 }}
+      SECRET3: ${{ secrets.SECRET3 }}
