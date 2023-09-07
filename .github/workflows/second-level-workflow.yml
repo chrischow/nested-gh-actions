@@ -49,4 +49,3 @@ jobs:
     secrets:
       SECRET1: ${{ secrets.SECRET1 }}
       SECRET2: ${{ secrets.SECRET2 }}
-      SECRET3: ${{ secrets.SECRET3 }}
