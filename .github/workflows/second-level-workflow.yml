@@ -24,12 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     outputs:
-      SECRET1: ${{ steps.prepare-secrets.SECRET1 }}
-      SECRET2: ${{ steps.prepare-secrets.SECRET2 }}
-      SECRET3: ${{ steps.prepare-secrets.SECRET3 }}
-      VAR1: ${{ steps.prepare-vars.VAR1 }}
-      VAR2: ${{ steps.prepare-vars.VAR2 }}
-      VAR3: ${{ steps.prepare-vars.VAR3 }}
+      SECRET1: ${{ steps.prepare-secrets.outputs.SECRET1 }}
+      SECRET2: ${{ steps.prepare-secrets.outputs.SECRET2 }}
+      SECRET3: ${{ steps.prepare-secrets.outputs.SECRET3 }}
+      VAR1: ${{ steps.prepare-vars.outputs.VAR1 }}
+      VAR2: ${{ steps.prepare-vars.outputs.VAR2 }}
+      VAR3: ${{ steps.prepare-vars.outputs.VAR3 }}
     steps:
       - name: Prepare secrets
         id: prepare-secrets
