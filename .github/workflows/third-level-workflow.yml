@@ -22,7 +22,6 @@ jobs:
   show-env:
     name: Show Environment
     runs-on: ubuntu-latest
-    environment: staging
     steps:
       - name: Print secrets
         run: |
