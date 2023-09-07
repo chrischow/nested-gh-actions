@@ -33,6 +33,18 @@ jobs:
     environment:
       name: ${{ inputs.deploy-environment }}
     steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+
+      - name: Prepare description
+        id: prepare-description
+        run: |
+          value=${{ github.sha }}
+          echo "value=$value" >> $GITHUB_OUTPUT
+          
       - name: Print env vars
         run: |
           echo "SECRET1=$SECRET1"
@@ -46,3 +58,4 @@ jobs:
           VAR1: ${{ vars.VAR1 }}
           VAR2: ${{ vars.VAR2 }}
           VAR3: ${{ vars.VAR3 }}
+          COMMIT: ${{ steps.prepare-description.outputs.value }}
