@@ -1,0 +1,32 @@
+name: top-level-workflow
+on:
+  push:
+jobs:
+  show-env:
+    name: Show Environment
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Print secrets
+        run: |
+          echo "SECRET1=${{ secrets.SECRET1 }}"
+          echo "SECRET2=${{ secrets.SECRET2 }}"
+          echo "SECRET3=${{ secrets.SECRET3 }}"
+      
+      - name: Print vars
+        run: |
+          echo "VAR1=${{ vars.VAR1 }}"
+          echo "VAR2=${{ vars.VAR2 }}"
+          echo "VAR3=${{ vars.VAR3 }}"
+  
+  call-level-2:
+    name: Second Level Workflow
+    uses: ./.github/workflows/second-level-workflow.yml
+    with:
+      VAR1: ${{ vars.VAR1 }}
+      VAR2: ${{ vars.VAR2 }}
+      VAR3: ${{ vars.VAR3 }}
+    secrets:
+      SECRET1: ${{ secrets.SECRET1 }}
+      SECRET2: ${{ secrets.SECRET2 }}
+      SECRET3: ${{ secrets.SECRET3 }}
