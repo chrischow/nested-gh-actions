@@ -22,6 +22,7 @@ jobs:
   call-level-2:
     name: Second Level Workflow
     uses: ./.github/workflows/second-level-workflow.yml
+    needs: show-env
     with:
       VAR1: ${{ vars.VAR1 }}
       VAR2: ${{ vars.VAR2 }}
