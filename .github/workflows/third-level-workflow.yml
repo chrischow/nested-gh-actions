@@ -2,26 +2,14 @@ name: third-level-workflow
 on:
   workflow_call:
     inputs:
-      VAR1:
+      deploy-environment:
         required: true
         type: string
-      VAR2:
-        required: true
-        type: string
-      VAR3:
-        required: true
-        type: string
-    secrets:
-      SECRET1:
-        required: true
-      SECRET2:
-        required: true
-      SECRET3:
-        required: true
 jobs:
   show-env:
     name: Show Environment
     runs-on: ubuntu-latest
+    environment: ${{ inputs.deploy-environment }}
     steps:
       - name: Print secrets
         run: |
@@ -31,6 +19,6 @@ jobs:
       
       - name: Print inputs
         run: |
-          echo "VAR1=${{ inputs.VAR1 }}"
-          echo "VAR2=${{ inputs.VAR2 }}"
-          echo "VAR3=${{ inputs.VAR3 }}"
+          echo "VAR1=${{ vars.VAR1 }}"
+          echo "VAR2=${{ vars.VAR2 }}"
+          echo "VAR3=${{ vars.VAR3 }}"
