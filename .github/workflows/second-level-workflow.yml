@@ -5,13 +5,13 @@ on:
       deploy-environment:
         required: true
         type: string
-    # secrets:
-    #   SECRET1:
-    #     required: true
-    #   SECRET2:
-    #     required: true
-    #   SECRET3:
-    #     required: true
+    secrets:
+      SECRET1:
+        required: true
+      SECRET2:
+        required: true
+      SECRET3:
+        required: true
 jobs:
   show-env:
     name: Show Environment
@@ -29,12 +29,24 @@ jobs:
           echo "VAR1=${{ vars.VAR1 }}"
           echo "VAR2=${{ vars.VAR2 }}"
           echo "VAR3=${{ vars.VAR3 }}"
+  process-vars:
+    name: Process Vars
+    runs-on: ubuntu-latest
+    outputs:
+      DATE: ${{ steps.prepare-vars.outputs.DATE }}
+    steps:
+      - name: Prepare vars
+        id: prepare-vars
+        run: |
+          DATE=$(TZ=Asia/Singapore date +%Y_%m_%d_%H_%M_%S)
+          echo "DATE=$DATE" >> $GITHUB_OUTPUT
   call-level-3:
     name: Third Level Workflow
     uses: ./.github/workflows/third-level-workflow.yml
+    needs: process-vars
     with:
       deploy-environment: ${{ inputs.deploy-environment }}
-    # secrets:
-    #   SECRET1: ${{ secrets.SECRET1 }}
-    #   SECRET2: ${{ secrets.SECRET2 }}
-    #   SECRET3: ${{ secrets.SECRET3 }}
+    secrets:
+      SECRET1: ${{ secrets.SECRET1 }}
+      SECRET2: ${{ secrets.SECRET2 }}
+      SECRET3: ${{ secrets.SECRET3 }}
