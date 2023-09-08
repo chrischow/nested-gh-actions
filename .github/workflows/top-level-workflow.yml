@@ -11,3 +11,17 @@ jobs:
       SECRET1: ${{ secrets.SECRET1 }}
       SECRET2: ${{ secrets.SECRET2 }}
       SECRET3: ${{ secrets.SECRET3 }}
+  test-directory:
+    name: Test whether consecutive steps run in the same directory
+    runs-on: ubuntu-latest
+    steps:
+      - name: Change directory
+        run: |
+          cd .github
+          ls -al
+          pwd
+      
+      - name: Check current directory
+        run: |
+          pwd
+          ls -al
