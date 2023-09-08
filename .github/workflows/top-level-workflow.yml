@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Change directory
         run: |
-          cd .github
+          cd ./.github
           ls -al
           pwd
       
